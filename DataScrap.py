@@ -28,18 +28,20 @@ flipkart_soup = BeautifulSoup(flipkart_content, "html.parser")
 amazon_products = []
 amazon_product_containers = amazon_soup.find_all("div", class_="s-result-item")
 for container in amazon_product_containers:
-    product = {"name": container.find("span", class_="a-size-medium").text,
-               "price": container.find("span", class_="a-offscreen").text,
-               "url": container.find("a", class_="a-link-normal")["href"]}
+    product = {}
+    product["name"] = container.find("span", class_="a-size-medium").text
+    product["price"] = container.find("span", class_="a-offscreen").text
+    product["url"] = container.find("a", class_="a-link-normal")["href"]
     amazon_products.append(product)
 
 # Extract the product information from Flipkart
 flipkart_products = []
 flipkart_product_containers = flipkart_soup.find_all("div", class_="_3O0U0u")
 for container in flipkart_product_containers:
-    product = {"name": container.find("div", class_="_3wU53n").text,
-               "price": container.find("div", class_="_1vC4OE_2rQ-NK").text,
-               "url": container.find("a", class_="_31qSD5")["href"]}
+    product = {}
+    product["name"] = container.find("div", class_="_3wU53n").text
+    product["price"] = container.find("div", class_="_1vC4OE_2rQ-NK").text
+    product["url"] = container.find("a", class_="_31qSD5")["href"]
     flipkart_products.append(product)
 
 # Print the extracted product information for Amazon
